@@ -1,4 +1,4 @@
-#include "print_board_plain.h"
+#include <libchessviz/print_board_plain.h>
 
 int main(void)
 {
