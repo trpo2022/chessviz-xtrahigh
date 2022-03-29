@@ -66,7 +66,7 @@ int read_moves(ChessBoard* b, FILE* src)
     fprintf(stdout, "Example:\n1. e2-e4 e7-e5\n2. f2-f3 b7-b6\n3. d2-d3#\n\n");
 
     while (is_end != EOF) {
-		is_end = fscanf(src, "%d. %s", &turn, white_move);
+        is_end = fscanf(src, "%d. %s", &turn, white_move);
 
         if (turn < 1 || turn != b->turns + 1) {
             fprintf(stderr,
