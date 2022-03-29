@@ -18,6 +18,11 @@ static int is_move_eval(char s)
     return (s == '#' || s == '+' || s == '\0');
 }
 
+static int is_empty_move(char s)
+{
+    return (s == '\0');
+}
+
 static int is_last_move(char* move)
 {
     return (move[5] == '#' || move[6] == '#');
@@ -26,7 +31,7 @@ static int is_last_move(char* move)
 static int is_correct_move(char* move)
 {
     unsigned int s = 0;
-    if (!is_move_ltr(move[s]))
+    if (!is_move_ltr(move[s]) || is_empty_move(move[s]))
         return 0;
     s++;
     if (!isdigit(move[s]))
@@ -53,18 +58,31 @@ static int is_correct_move(char* move)
 
 int read_moves(ChessBoard* b, FILE* src)
 {
-    int turn = -1;
+    int turn = -1, is_end = 1;
     char white_move[MOVE_SIZE] = {'\0'};
     char black_move[MOVE_SIZE] = {'\0'};
 
-    fprintf(stdout, "\nEnter a record of turns:\n");
+    fprintf(stdout, "\nEnter the full record of turns (CTRL+C to quit)\n");
+    fprintf(stdout, "Example:\n1. e2-e4 e7-e5\n2. f2-f3 b7-b6\n3. d2-d3#\n\n");
 
-    while (fscanf(src, "%d. %s %s", &turn, white_move, black_move) != EOF) {
-        if (turn < 1 || turn != b->turns + 1)
-            return 0;
+    while (is_end != EOF) {
+		is_end = fscanf(src, "%d. %s", &turn, white_move);
 
-        if (!is_correct_move(white_move))
+        if (turn < 1 || turn != b->turns + 1) {
+            fprintf(stderr,
+                    "Turn %d: incorrect number, expected %d\n",
+                    turn,
+                    b->turns + 1);
             return 0;
+        }
+
+        if (!is_correct_move(white_move)) {
+            fprintf(stderr,
+                    "Turn %d: incorrect white move %s\n",
+                    turn,
+                    white_move);
+            return 0;
+        }
 
         strncpy(b->moves[turn - 1][MOVE_WHITE], white_move, MOVE_SIZE);
 
@@ -73,8 +91,15 @@ int read_moves(ChessBoard* b, FILE* src)
         if (is_last_move(white_move))
             return 1;
 
-        if (!is_correct_move(black_move))
+        is_end = fscanf(src, "%s", black_move);
+
+        if (!is_correct_move(black_move)) {
+            fprintf(stderr,
+                    "Turn %d: incorrect black move %s\n",
+                    turn,
+                    black_move);
             return 0;
+        }
 
         strncpy(b->moves[turn - 1][MOVE_BLACK], black_move, MOVE_SIZE);
 
