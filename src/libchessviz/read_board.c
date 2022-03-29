@@ -66,11 +66,21 @@ int read_moves(ChessBoard* b, FILE* src)
     fprintf(stdout, "Example:\n1. e2-e4 e7-e5\n2. f2-f3 b7-b6\n3. d2-d3#\n\n");
 
     while (fscanf(src, "%d. %s %s", &turn, white_move, black_move) != EOF) {
-        if (turn < 1 || turn != b->turns + 1)
+        if (turn < 1 || turn != b->turns + 1) {
+            fprintf(stderr,
+                    "Turn %d: incorrect number, expected %d\n",
+                    turn,
+                    b->turns + 1);
             return 0;
+        }
 
-        if (!is_correct_move(white_move))
+        if (!is_correct_move(white_move)) {
+            fprintf(stderr,
+                    "Turn %d: incorrect white move %s\n",
+                    turn,
+                    white_move);
             return 0;
+        }
 
         strncpy(b->moves[turn - 1][MOVE_WHITE], white_move, MOVE_SIZE);
 
@@ -79,8 +89,13 @@ int read_moves(ChessBoard* b, FILE* src)
         if (is_last_move(white_move))
             return 1;
 
-        if (!is_correct_move(black_move))
+        if (!is_correct_move(black_move)) {
+            fprintf(stderr,
+                    "Turn %d: incorrect black move %s\n",
+                    turn,
+                    black_move);
             return 0;
+        }
 
         strncpy(b->moves[turn - 1][MOVE_BLACK], black_move, MOVE_SIZE);
 
