@@ -57,7 +57,8 @@ int read_moves(ChessBoard* b, FILE* src)
     char white_move[MOVE_SIZE] = {'\0'};
     char black_move[MOVE_SIZE] = {'\0'};
 
-    fprintf(stdout, "\nEnter a record of turns:\n");
+    fprintf(stdout, "\nEnter the full record of turns (CTRL+C to quit)\n");
+    fprintf(stdout, "Example:\n1. e2-e4 e7-e5\n2. f2-f3 b7-b6\n3. d2-d3#\n\n");
 
     while (fscanf(src, "%d. %s %s", &turn, white_move, black_move) != EOF) {
         if (turn < 1 || turn != b->turns + 1)
