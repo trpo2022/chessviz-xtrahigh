@@ -37,9 +37,6 @@ $(LIB_PATH): $(LIB_OBJ)
 $(OBJ)/%.$(OBJ_EXT): %.$(SRC_EXT)
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-$(LIB): $(LIB_OBJ)
-	$(AR) rcs $@ $^
-
 clean:
 	$(RM) $(APP_BIN) $(LIB_PATH) $(APP_OBJ) $(LIB_OBJ) $(DEPS)
 
