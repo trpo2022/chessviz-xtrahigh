@@ -28,14 +28,15 @@ void make_moves(ChessBoard* b)
 {
     for (int i = 0; i < b->turns; i++) {
         b->turn++;
-        for (int j = 0; j < MOVES_IN_TURN; j++) {
-            move_piece(
+        for (int j = 0, m = 0; j < MOVES_IN_TURN; j++) {
+            m = move_piece(
                     b,
                     b->moves[i][j][0],
                     b->moves[i][j][1],
                     b->moves[i][j][3],
                     b->moves[i][j][4]);
-            print_board(b, stdout, j);
+            if (m)
+                print_board(b, stdout, j);
         }
     }
 }
