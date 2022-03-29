@@ -1,5 +1,11 @@
 #include <libchessviz/move.h>
 
+#define is_positive_pos \
+    (from_col >= 0 && to_col >= 0 && from_row >= 0 && to_row >= 0)
+#define is_within_board                                                    \
+    (from_col < BOARD_SIZE && to_col < BOARD_SIZE && from_row < BOARD_SIZE \
+     && to_row < BOARD_SIZE)
+
 static int
 move_piece(ChessBoard* b, int from_col, int from_row, int to_col, int to_row)
 {
@@ -9,8 +15,7 @@ move_piece(ChessBoard* b, int from_col, int from_row, int to_col, int to_row)
     to_row -= '0' + 1;
 
     int moved = 0;
-    if (from_col < BOARD_SIZE && to_col < BOARD_SIZE && from_row < BOARD_SIZE
-        && to_row < BOARD_SIZE) {
+    if (is_positive_pos && is_within_board) {
         b->board[to_row][to_col] = b->board[from_row][from_col];
         b->board[from_row][from_col] = ' ';
         moved = 1;
