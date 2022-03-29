@@ -18,6 +18,11 @@ static int is_move_eval(char s)
     return (s == '#' || s == '+' || s == '\0');
 }
 
+static int is_empty_move(char s)
+{
+    return (s == '\0');
+}
+
 static int is_last_move(char* move)
 {
     return (move[5] == '#' || move[6] == '#');
@@ -26,7 +31,7 @@ static int is_last_move(char* move)
 static int is_correct_move(char* move)
 {
     unsigned int s = 0;
-    if (!is_move_ltr(move[s]))
+    if (!is_move_ltr(move[s]) || is_empty_move(move[s]))
         return 0;
     s++;
     if (!isdigit(move[s]))
