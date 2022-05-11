@@ -24,6 +24,21 @@ move_piece(ChessBoard* b, int from_col, int from_row, int to_col, int to_row)
     return moved;
 }
 
+static int check_move(ChessBoard* b, char* move)
+{
+    int status = IS_PAWN;
+
+    if (is_piece_ltr(move[0]))
+        status = IS_NOT_PAWN;
+
+    if (status == IS_PAWN)
+        status = is_pawn_move_correct(b, move) ? IS_PAWN : MOVE_ERR;
+    else if (status == IS_NOT_PAWN)
+        status = is_piece_move_correct(b, move) ? IS_NOT_PAWN : MOVE_ERR;
+
+    return status;
+}
+
 void make_moves(ChessBoard* b)
 {
     for (int i = 0; i < b->turns; i++) {
