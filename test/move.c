@@ -181,3 +181,15 @@ CTEST(move, is_bishop_move_correct)
     ASSERT_TRUE(is_bishop_move_correct("Kf4-g5"));
     ASSERT_TRUE(is_bishop_move_correct("Kg5-h6"));
 }
+
+CTEST(move, is_knight_move_correct)
+{
+    ASSERT_TRUE(is_knight_move_correct("Nd3-c1"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-b2"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-b4"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-c5"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-e5"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-f4"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-f2"));
+    ASSERT_TRUE(is_knight_move_correct("Nd3-e1"));
+}
