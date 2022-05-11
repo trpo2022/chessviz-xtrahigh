@@ -100,3 +100,24 @@ CTEST(move, is_king_move_correct)
     ASSERT_FALSE(is_king_move_correct("Kd4-a4"));
     ASSERT_FALSE(is_king_move_correct("Kd4-h4"));
 }
+
+CTEST(move, is_queen_move_correct)
+{
+    ASSERT_TRUE(is_queen_move_correct("Kd4-d3"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-c3"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-e3"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-d5"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-c5"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-e5"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-c4"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-e4"));
+
+    ASSERT_TRUE(is_queen_move_correct("Kd4-d1"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-c1"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-e1"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-d7"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-c7"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-e7"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-a4"));
+    ASSERT_TRUE(is_queen_move_correct("Kd4-h4"));
+}
