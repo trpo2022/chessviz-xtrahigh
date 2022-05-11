@@ -10,4 +10,6 @@
 
 int read_moves(ChessBoard* b, FILE* src);
 
+int is_piece_ltr(char s);
+
 #endif

@@ -28,9 +28,16 @@ static int is_last_move(char* move)
     return (move[5] == '#' || move[6] == '#');
 }
 
+int is_piece_ltr(char s)
+{
+    return (s == 'K' || s == 'Q' || s == 'R' || s == 'B' || s == 'N');
+}
+
 static int is_correct_move(char* move)
 {
     unsigned int s = 0;
+    if (is_piece_ltr(move[0]))
+        s++;
     if (!is_move_ltr(move[s]) || is_empty_move(move[s]))
         return 0;
     s++;
