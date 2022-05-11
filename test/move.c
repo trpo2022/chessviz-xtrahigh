@@ -15,43 +15,32 @@ CTEST(move, move_piece)
     int tc = 0;
     int tr = 0;
 
-    int result = move_piece(board, fc, fr, tc, tr);
-    ASSERT_FALSE(result);
+    ASSERT_FALSE(move_piece(board, fc, fr, tc, tr));
 
     tc = 'a';
     fr = '1';
     tr = '1';
 
-    for (fc = 'a'; fc <= 'h'; fc++) {
-        result = move_piece(board, fc, fr, tc, tr);
-        ASSERT_TRUE(result);
-    }
+    for (fc = 'a'; fc <= 'h'; fc++)
+        ASSERT_TRUE(move_piece(board, fc, fr, tc, tr));
 
-    for (fc = 'h'; fr <= '8'; fr++) {
-        result = move_piece(board, fc, fr, tc, tr);
-        ASSERT_TRUE(result);
-    }
+    for (fc = 'h'; fr <= '8'; fr++)
+        ASSERT_TRUE(move_piece(board, fc, fr, tc, tr));
 
-    for (fr = '8'; tc <= 'h'; tc++) {
-        result = move_piece(board, fc, fr, tc, tr);
-        ASSERT_TRUE(result);
-    }
+    for (fr = '8'; tc <= 'h'; tc++)
+        ASSERT_TRUE(move_piece(board, fc, fr, tc, tr));
 
-    for (tc = 'h'; tr <= '8'; tr++) {
-        result = move_piece(board, fc, fr, tc, tr);
-        ASSERT_TRUE(result);
-    }
+    for (tc = 'h'; tr <= '8'; tr++)
+        ASSERT_TRUE(move_piece(board, fc, fr, tc, tr));
 
-    result = move_piece(board, fc, fr, tc, tr);
-    ASSERT_FALSE(result);
+    ASSERT_FALSE(move_piece(board, fc, fr, tc, tr));
 
     fc = 'm';
     fr = '9';
     tc = 'w';
     tr = '0';
 
-    result = move_piece(board, fc, fr, tc, tr);
-    ASSERT_FALSE(result);
+    ASSERT_FALSE(move_piece(board, fc, fr, tc, tr));
 
     free_board(board);
 }
