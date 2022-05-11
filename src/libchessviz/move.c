@@ -65,15 +65,30 @@ static int check_move(ChessBoard* b, char* move)
 
 void make_moves(ChessBoard* b)
 {
+    int s = 0;
+    int status = 0;
     for (int i = 0; i < b->turns; i++) {
         b->turn++;
         for (int j = 0, m = 0; j < MOVES_IN_TURN; j++) {
+            s = 0;
+            status = check_move(b, b->moves[i][j]);
+            if (status == IS_NOT_PAWN)
+                s++;
+            else if (status == MOVE_ERR) {
+                if (b->turn != b->turns)
+                    fprintf(stdout,
+                            "Turn %d: incorrect move %s\n",
+                            b->turn,
+                            b->moves[i][j]);
+                return;
+            }
+
             m = move_piece(
                     b,
-                    b->moves[i][j][0],
-                    b->moves[i][j][1],
-                    b->moves[i][j][3],
-                    b->moves[i][j][4]);
+                    b->moves[i][j][s],
+                    b->moves[i][j][s + 1],
+                    b->moves[i][j][s + 3],
+                    b->moves[i][j][s + 4]);
             if (m)
                 print_board(b, stdout, j);
         }
