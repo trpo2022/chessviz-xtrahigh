@@ -67,3 +67,19 @@ CTEST(read, is_piece_ltr)
             ASSERT_FALSE(is_piece_ltr(c));
     }
 }
+
+CTEST(read, is_correct_move)
+{
+    ASSERT_TRUE(is_correct_move("e1-e2"));
+    ASSERT_TRUE(is_correct_move("Ne2-e3"));
+    ASSERT_TRUE(is_correct_move("e2-e4"));
+    ASSERT_TRUE(is_correct_move("Ba1-a8"));
+    ASSERT_TRUE(is_correct_move("Qe1-e2"));
+    ASSERT_TRUE(is_correct_move("e1-e2"));
+
+    ASSERT_FALSE(is_correct_move("Pe1-e2"));
+    ASSERT_FALSE(is_correct_move("O1-e2"));
+    ASSERT_FALSE(is_correct_move("n1-e2"));
+    ASSERT_FALSE(is_correct_move("h9-e2"));
+    ASSERT_FALSE(is_correct_move("h3-e0"));
+}
