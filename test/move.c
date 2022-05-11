@@ -103,83 +103,83 @@ CTEST(move, is_king_move_correct)
 
 CTEST(move, is_queen_move_correct)
 {
-    ASSERT_TRUE(is_queen_move_correct("Kd4-d3"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-c3"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-e3"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-d5"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-c5"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-e5"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-c4"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-e4"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-d3"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-c3"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-e3"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-d5"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-c5"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-e5"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-c4"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-e4"));
 
-    ASSERT_TRUE(is_queen_move_correct("Kd4-d1"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-c1"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-e1"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-d7"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-c7"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-e7"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-a4"));
-    ASSERT_TRUE(is_queen_move_correct("Kd4-h4"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-d1"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-c1"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-e1"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-d7"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-c7"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-e7"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-a4"));
+    ASSERT_TRUE(is_queen_move_correct("Qd4-h4"));
 }
 
 CTEST(move, is_rook_move_correct)
 {
-    ASSERT_TRUE(is_rook_move_correct("Kd1-d2"));
-    ASSERT_TRUE(is_rook_move_correct("Kd2-d3"));
-    ASSERT_TRUE(is_rook_move_correct("Kd3-d4"));
-    ASSERT_TRUE(is_rook_move_correct("Kd4-d5"));
-    ASSERT_TRUE(is_rook_move_correct("Kd5-d4"));
-    ASSERT_TRUE(is_rook_move_correct("Kd5-d6"));
-    ASSERT_TRUE(is_rook_move_correct("Kd6-d7"));
-    ASSERT_TRUE(is_rook_move_correct("Kd7-d8"));
+    ASSERT_TRUE(is_rook_move_correct("Rd1-d2"));
+    ASSERT_TRUE(is_rook_move_correct("Rd2-d3"));
+    ASSERT_TRUE(is_rook_move_correct("Rd3-d4"));
+    ASSERT_TRUE(is_rook_move_correct("Rd4-d5"));
+    ASSERT_TRUE(is_rook_move_correct("Rd5-d4"));
+    ASSERT_TRUE(is_rook_move_correct("Rd5-d6"));
+    ASSERT_TRUE(is_rook_move_correct("Rd6-d7"));
+    ASSERT_TRUE(is_rook_move_correct("Rd7-d8"));
 
-    ASSERT_TRUE(is_rook_move_correct("Ka2-b2"));
-    ASSERT_TRUE(is_rook_move_correct("Kb2-c2"));
-    ASSERT_TRUE(is_rook_move_correct("Kc2-d2"));
-    ASSERT_TRUE(is_rook_move_correct("Kd2-e2"));
-    ASSERT_TRUE(is_rook_move_correct("Ke2-f2"));
-    ASSERT_TRUE(is_rook_move_correct("Kf2-g2"));
-    ASSERT_TRUE(is_rook_move_correct("Kg2-h2"));
-    ASSERT_TRUE(is_rook_move_correct("Kh2-a2"));
+    ASSERT_TRUE(is_rook_move_correct("Ra2-b2"));
+    ASSERT_TRUE(is_rook_move_correct("Rb2-c2"));
+    ASSERT_TRUE(is_rook_move_correct("Rc2-d2"));
+    ASSERT_TRUE(is_rook_move_correct("Rd2-e2"));
+    ASSERT_TRUE(is_rook_move_correct("Re2-f2"));
+    ASSERT_TRUE(is_rook_move_correct("Rf2-g2"));
+    ASSERT_TRUE(is_rook_move_correct("Rg2-h2"));
+    ASSERT_TRUE(is_rook_move_correct("Rh2-a2"));
 
-    ASSERT_FALSE(is_rook_move_correct("Kd4-c1"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-e1"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-c5"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-e5"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-c7"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-e7"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-c3"));
-    ASSERT_FALSE(is_rook_move_correct("Kd4-e3"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-c1"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-e1"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-c5"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-e5"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-c7"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-e7"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-c3"));
+    ASSERT_FALSE(is_rook_move_correct("Rd4-e3"));
 }
 
 CTEST(move, is_bishop_move_correct)
 {
-    ASSERT_FALSE(is_bishop_move_correct("Kd1-d2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd2-d3"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd3-d4"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd4-d5"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd5-d4"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd5-d6"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd6-d7"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd7-d8"));
-    ASSERT_FALSE(is_bishop_move_correct("Ka2-b2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kb2-c2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kc2-d2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd2-e2"));
-    ASSERT_FALSE(is_bishop_move_correct("Ke2-f2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kf2-g2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kg2-h2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kh2-a2"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd4-c1"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd4-e1"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd4-c7"));
-    ASSERT_FALSE(is_bishop_move_correct("Kd4-e7"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd1-d2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd2-d3"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd3-d4"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd4-d5"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd5-d4"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd5-d6"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd6-d7"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd7-d8"));
+    ASSERT_FALSE(is_bishop_move_correct("Ba2-b2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bb2-c2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bc2-d2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd2-e2"));
+    ASSERT_FALSE(is_bishop_move_correct("Be2-f2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bf2-g2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bg2-h2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bh2-a2"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd4-c1"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd4-e1"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd4-c7"));
+    ASSERT_FALSE(is_bishop_move_correct("Bd4-e7"));
 
-    ASSERT_TRUE(is_bishop_move_correct("Kc1-d2"));
-    ASSERT_TRUE(is_bishop_move_correct("Kd2-e3"));
-    ASSERT_TRUE(is_bishop_move_correct("Ke3-f4"));
-    ASSERT_TRUE(is_bishop_move_correct("Kf4-g5"));
-    ASSERT_TRUE(is_bishop_move_correct("Kg5-h6"));
+    ASSERT_TRUE(is_bishop_move_correct("Bc1-d2"));
+    ASSERT_TRUE(is_bishop_move_correct("Bd2-e3"));
+    ASSERT_TRUE(is_bishop_move_correct("Be3-f4"));
+    ASSERT_TRUE(is_bishop_move_correct("Bf4-g5"));
+    ASSERT_TRUE(is_bishop_move_correct("Bg5-h6"));
 }
 
 CTEST(move, is_knight_move_correct)
