@@ -1,4 +1,5 @@
 #include <libchessviz/move.h>
+#include <libchessviz/read_board.h>
 
 #define is_positive_pos \
     (from_col >= 0 && to_col >= 0 && from_row >= 0 && to_row >= 0)
@@ -28,21 +29,139 @@ static int is_pawn_move_correct(ChessBoard* b, char* move)
 {
     int correct = 1;
 
-    int step_size = move[1] - move[4]; // e2-e4 => -2
+    int step_size = move[1] - move[4]; // e2-e4 -> -2
     if (step_size < 0)
         step_size *= -1;
 
     if (step_size > 2 || step_size == 0)
-        correct = 0;
+        return 0;
+
+    if (step_size == 2 && b->turn > 1)
+        return 0;
 
     if (move[0] != move[3])
-        correct = 0;
+        return 0;
 
     char target_cell = b->board[move[4] - '0' - 1][move[3] - 'a'];
 
     if (move[2] == 'x' && target_cell == ' ')
         correct = 0;
     else if (move[2] == '-' && target_cell != ' ')
+        correct = 0;
+
+    return correct;
+}
+
+static int is_king_move_correct(char* move)
+{
+    int rows_step_size = move[2] - move[5]; // Kd5-c4 -> -1
+    if (rows_step_size < 0)
+        rows_step_size *= -1;
+
+    int cols_step_size = move[1] - move[4]; // Kd5-c4 -> -1
+    if (cols_step_size < 0)
+        cols_step_size *= -1;
+
+    if (cols_step_size + rows_step_size == 0)
+        return 0;
+
+    return ((rows_step_size + cols_step_size) == 1
+            || (rows_step_size + cols_step_size) == 2);
+}
+
+static int is_queen_move_correct(char* move)
+{
+    int rows_step_size = move[2] - move[5]; // Qd3-f5 -> -2
+    if (rows_step_size < 0)
+        rows_step_size *= -1;
+
+    int cols_step_size = move[1] - move[4]; // Qd3-f5 -> -2
+    if (cols_step_size < 0)
+        cols_step_size *= -1;
+
+    return (cols_step_size + rows_step_size > 0);
+}
+
+static int is_rook_move_correct(char* move)
+{
+    int rows_step_size = move[2] - move[5]; // Rh6-h1 -> 5
+    if (rows_step_size < 0)
+        rows_step_size *= -1;
+
+    int cols_step_size = move[1] - move[4]; // Rh6-h1 -> 0
+    if (cols_step_size < 0)
+        cols_step_size *= -1;
+
+    if (cols_step_size + rows_step_size == 0)
+        return 0;
+
+    return ((cols_step_size == 0 && rows_step_size > 0)
+            || (cols_step_size > 0 && rows_step_size == 0));
+}
+
+static int is_bishop_move_correct(char* move)
+{
+    int rows_step_size = move[2] - move[5]; // Bf3-d5 -> -2
+    if (rows_step_size < 0)
+        rows_step_size *= -1;
+
+    int cols_step_size = move[1] - move[4]; // Bf3-d5 -> -2
+    if (cols_step_size < 0)
+        cols_step_size *= -1;
+
+    if (cols_step_size + rows_step_size == 0)
+        return 0;
+
+    return (rows_step_size == cols_step_size);
+}
+
+static int is_knight_move_correct(char* move)
+{
+    int rows_step_size = move[2] - move[5]; // Ne4-c3 -> -1
+    if (rows_step_size < 0)
+        rows_step_size *= -1;
+
+    int cols_step_size = move[1] - move[4]; // Ne4-c3 -> -2
+    if (cols_step_size < 0)
+        cols_step_size *= -1;
+
+    return (cols_step_size + rows_step_size > 0);
+}
+
+static int is_piece_move_correct(ChessBoard* b, char* move)
+{
+    int correct = 1;
+
+    switch (move[0]) {
+    case 'K':
+        if (!is_king_move_correct(move))
+            return 0;
+        break;
+    case 'Q': // Queen
+        if (!is_queen_move_correct(move))
+            return 0;
+        break;
+    case 'R': // Rook
+        if (!is_rook_move_correct(move))
+            return 0;
+        break;
+    case 'B':
+        if (!is_bishop_move_correct(move))
+            return 0;
+        break;
+    case 'N': // kNight
+        if (!is_knight_move_correct(move))
+            return 0;
+        break;
+    default:
+        correct = 0;
+    }
+
+    char target_cell = b->board[move[5] - '0' - 1][move[4] - 'a'];
+
+    if (move[3] == 'x' && target_cell == ' ')
+        correct = 0;
+    else if (move[3] == '-' && target_cell != ' ')
         correct = 0;
 
     return correct;

@@ -6,6 +6,10 @@
 
 #include <stdio.h>
 
+#define IS_PAWN 1
+#define IS_NOT_PAWN 2
+#define MOVE_ERR 0
+
 void make_moves(ChessBoard* b);
 
 #endif
