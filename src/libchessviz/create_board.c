@@ -7,8 +7,8 @@ ChessBoard* create_board(void)
     ChessBoard* b = (ChessBoard*)malloc(sizeof(ChessBoard));
 
     if (b != NULL) {
-        b->turn = 0;
-        b->turns = 0;
+        b->turn = INITIAL_TURNS;
+        b->turns = INITIAL_TURNS;
         strncpy(b->board[0], "RNBQKBNR", BOARD_SIZE + 1);
         strncpy(b->board[1], "PPPPPPPP", BOARD_SIZE + 1);
         strncpy(b->board[2], "        ", BOARD_SIZE + 1);

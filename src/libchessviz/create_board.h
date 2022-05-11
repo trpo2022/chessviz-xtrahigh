@@ -5,6 +5,8 @@
 
 #include <stdlib.h>
 
+#define INITIAL_TURNS 0
+
 ChessBoard* create_board(void);
 
 #endif
