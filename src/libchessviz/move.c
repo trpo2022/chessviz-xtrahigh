@@ -134,24 +134,24 @@ static int is_piece_move_correct(ChessBoard* b, char* move)
 {
     int correct = 1;
 
-    switch (move[0]) {
-    case 'K':
+    switch (tolower(move[0])) {
+    case 'k':
         if (!is_king_move_correct(move))
             return 0;
         break;
-    case 'Q':
+    case 'q':
         if (!is_queen_move_correct(move))
             return 0;
         break;
-    case 'R':
+    case 'r':
         if (!is_rook_move_correct(move))
             return 0;
         break;
-    case 'B':
+    case 'b':
         if (!is_bishop_move_correct(move))
             return 0;
         break;
-    case 'N':
+    case 'n':
         if (!is_knight_move_correct(move))
             return 0;
         break;
