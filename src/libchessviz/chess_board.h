@@ -1,6 +1,9 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
+#define TRUE 1
+#define FALSE 0
+
 #define BOARD_SIZE 8
 
 #define TURNS_MAX 220

@@ -1,3 +1,4 @@
+#include <libchessviz/create_board.h>
 #include <libchessviz/print_board.h>
 
 #include <stdarg.h>
@@ -11,7 +12,7 @@ void print_board(const ChessBoard* b, FILE* dist, ...)
     va_end(params);
 
     // If it's not the default board, print the turn number and move info
-    if (b->turns != 0)
+    if (b->turns != INITIAL_TURNS)
         fprintf(dist,
                 "\nT%d/%d: %s\n",
                 b->turn,
