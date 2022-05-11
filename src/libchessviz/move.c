@@ -24,6 +24,30 @@ move_piece(ChessBoard* b, int from_col, int from_row, int to_col, int to_row)
     return moved;
 }
 
+static int is_pawn_move_correct(ChessBoard* b, char* move)
+{
+    int correct = 1;
+
+    int step_size = move[1] - move[4]; // e2-e4 => -2
+    if (step_size < 0)
+        step_size *= -1;
+
+    if (step_size > 2 || step_size == 0)
+        correct = 0;
+
+    if (move[0] != move[3])
+        correct = 0;
+
+    char target_cell = b->board[move[4] - '0' - 1][move[3] - 'a'];
+
+    if (move[2] == 'x' && target_cell == ' ')
+        correct = 0;
+    else if (move[2] == '-' && target_cell != ' ')
+        correct = 0;
+
+    return correct;
+}
+
 static int check_move(ChessBoard* b, char* move)
 {
     int status = IS_PAWN;
