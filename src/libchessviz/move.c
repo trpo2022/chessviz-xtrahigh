@@ -1,6 +1,8 @@
 #include <libchessviz/move.h>
 #include <libchessviz/read_board.h>
 
+#include <ctype.h>
+
 #define is_positive_pos \
     (from_col >= 0 && to_col >= 0 && from_row >= 0 && to_row >= 0)
 #define is_within_board                                                    \
@@ -137,11 +139,11 @@ static int is_piece_move_correct(ChessBoard* b, char* move)
         if (!is_king_move_correct(move))
             return 0;
         break;
-    case 'Q': // Queen
+    case 'Q':
         if (!is_queen_move_correct(move))
             return 0;
         break;
-    case 'R': // Rook
+    case 'R':
         if (!is_rook_move_correct(move))
             return 0;
         break;
@@ -149,13 +151,18 @@ static int is_piece_move_correct(ChessBoard* b, char* move)
         if (!is_bishop_move_correct(move))
             return 0;
         break;
-    case 'N': // kNight
+    case 'N':
         if (!is_knight_move_correct(move))
             return 0;
         break;
     default:
         correct = 0;
     }
+
+    char source_cell = b->board[move[2] - '0' - 1][move[1] - 'a'];
+
+    if (tolower(source_cell) != tolower(move[0]))
+        return 0;
 
     char target_cell = b->board[move[5] - '0' - 1][move[4] - 'a'];
 
